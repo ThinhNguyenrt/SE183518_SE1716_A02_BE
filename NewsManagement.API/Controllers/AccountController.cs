@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Models;
 using Repository.Requests;
+using Repository.Responses;
 using Service.Interface;
 
 namespace NewsManagement.API.Controllers
@@ -27,12 +29,7 @@ namespace NewsManagement.API.Controllers
             try
             {
                 var accounts = await _accountService.GetAllAccountsAsync();
-                return Ok(new
-                {
-                    success = true,
-                    data = accounts,
-                    message = "Accounts retrieved successfully"
-                });
+                return Ok(ApiResponse<IEnumerable<AccountResponse>>.Success(accounts, "Fetched all users successfully"));
             }
             catch (Exception ex)
             {
@@ -53,7 +50,7 @@ namespace NewsManagement.API.Controllers
                 if (account == null)
                     return NotFound(new { success = false, message = "Account not found" });
 
-                return Ok(new { success = true, data = account });
+                return Ok(ApiResponse<AccountResponse>.Success(account, "Fetched user successfully"));
             }
             catch (Exception ex)
             {

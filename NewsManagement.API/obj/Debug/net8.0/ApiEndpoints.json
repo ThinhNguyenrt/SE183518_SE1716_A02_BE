@@ -264,7 +264,7 @@
   },
   {
     "ContainingType": "NewsManagement.API.Controllers.NewsArticleController",
-    "Method": "Create",
+    "Method": "CreateNewsArticle",
     "RelativePath": "api/newsarticle",
     "HttpMethod": "POST",
     "IsController": true,
@@ -362,6 +362,80 @@
     "Parameters": [
       {
         "Name": "tagId",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsManagement.API.Controllers.TagController",
+    "Method": "GetAll",
+    "RelativePath": "api/tags",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsManagement.API.Controllers.TagController",
+    "Method": "Create",
+    "RelativePath": "api/tags",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Repository.Requests.TagRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsManagement.API.Controllers.TagController",
+    "Method": "Update",
+    "RelativePath": "api/tags",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "request",
+        "Type": "Repository.Requests.UpdateTagRequest",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsManagement.API.Controllers.TagController",
+    "Method": "GetById",
+    "RelativePath": "api/tags/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "NewsManagement.API.Controllers.TagController",
+    "Method": "Delete",
+    "RelativePath": "api/tags/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
         "Type": "System.Guid",
         "IsRequired": true
       }

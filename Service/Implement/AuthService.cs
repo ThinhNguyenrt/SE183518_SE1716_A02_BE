@@ -73,6 +73,7 @@ namespace Service.Implement
             {
                 AccountName = user.AccountName,
                 AccountEmail = user.AccountEmail,
+                AccountId = user.AccountId,
                 AccountRole = user.AccountRole,
                 Token = GenerateJwtToken(user)
             };
@@ -85,6 +86,8 @@ namespace Service.Implement
 
             var claims = new[]
             {
+                new Claim(JwtRegisteredClaimNames.Sub, user.AccountId.ToString()), // ✅ chuẩn JWT
+                new Claim("AccountId", user.AccountId.ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.AccountId.ToString()),
                 new Claim(ClaimTypes.Email, user.AccountEmail),
                 new Claim(ClaimTypes.Role, user.AccountRole.ToString())

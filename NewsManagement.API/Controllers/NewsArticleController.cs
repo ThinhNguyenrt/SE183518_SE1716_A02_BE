@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Repository.Requests;
+using Repository.Responses;
 using Service.Interface;
 
 namespace NewsManagement.API.Controllers
@@ -24,11 +24,11 @@ namespace NewsManagement.API.Controllers
             try
             {
                 var articles = await _newsArticleService.GetAllNewsArticlesAsync();
-                return Ok(articles);
+                return Ok(ApiResponse<IEnumerable<NewsArticleResponse>>.Success(articles, "Fetched all articles successfully"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
 
@@ -39,37 +39,37 @@ namespace NewsManagement.API.Controllers
             {
                 var article = await _newsArticleService.GetNewsArticleByIdAsync(id);
                 if (article == null)
-                    return NotFound(new { message = "News article not found" });
+                    return NotFound(ApiResponse<string>.Fail("News article not found", 404));
 
-                return Ok(article);
+                return Ok(ApiResponse<NewsArticleResponse>.Success(article, "Fetched article successfully"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] NewsArticleRequest request)
+        public async Task<IActionResult> CreateNewsArticle([FromBody] NewsArticleRequest request)
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
+                var userId = User.FindFirst("AccountId")?.Value;
+                if (userId == null)
+                    return Unauthorized(ApiResponse<string>.Fail("Missing AccountId in token", 401));
 
-                // Get current user ID from authentication context
-                var currentUserId = Guid.Parse(User.FindFirst("UserId")?.Value ?? Guid.Empty.ToString());
+                var createdById = Guid.Parse(userId);
+                var result = await _newsArticleService.CreateNewsArticleAsync(request, createdById);
 
-                var article = await _newsArticleService.CreateNewsArticleAsync(request, currentUserId);
-                return CreatedAtAction(nameof(GetById), new { id = article.NewsArticleId }, article);
+                return Ok(ApiResponse<NewsArticleResponse>.Success(result, "News article created successfully"));
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.Fail(ex.Message, 400));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
 
@@ -79,25 +79,28 @@ namespace NewsManagement.API.Controllers
             try
             {
                 if (!ModelState.IsValid)
-                    return BadRequest(ModelState);
+                    return BadRequest(ApiResponse<string>.Fail("Invalid model state", 400));
 
-                // Get current user ID from authentication context
-                var currentUserId = Guid.Parse(User.FindFirst("UserId")?.Value ?? Guid.Empty.ToString());
+                var userId = User.FindFirst("AccountId")?.Value;
+                if (userId == null)
+                    return Unauthorized(ApiResponse<string>.Fail("Missing AccountId in token", 401));
 
-                var article = await _newsArticleService.UpdateNewsArticleAsync(request, currentUserId);
-                return Ok(article);
+                var currentUserId = Guid.Parse(userId);
+                var updated = await _newsArticleService.UpdateNewsArticleAsync(request, currentUserId);
+
+                return Ok(ApiResponse<NewsArticleResponse>.Success(updated, "News article updated successfully"));
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(new { message = ex.Message });
+                return NotFound(ApiResponse<string>.Fail(ex.Message, 404));
             }
             catch (ArgumentException ex)
             {
-                return BadRequest(new { message = ex.Message });
+                return BadRequest(ApiResponse<string>.Fail(ex.Message, 400));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
 
@@ -107,15 +110,15 @@ namespace NewsManagement.API.Controllers
             try
             {
                 await _newsArticleService.DeleteNewsArticleAsync(id);
-                return NoContent();
+                return Ok(ApiResponse<string>.Success("Article deleted successfully", "Success", 200));
             }
             catch (KeyNotFoundException ex)
             {
-                return NotFound(new { message = ex.Message });
+                return NotFound(ApiResponse<string>.Fail(ex.Message, 404));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
 
@@ -125,11 +128,11 @@ namespace NewsManagement.API.Controllers
             try
             {
                 var articles = await _newsArticleService.GetNewsArticlesByCategoryAsync(categoryId);
-                return Ok(articles);
+                return Ok(ApiResponse<IEnumerable<NewsArticleResponse>>.Success(articles, "Fetched articles by category"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
 
@@ -139,11 +142,11 @@ namespace NewsManagement.API.Controllers
             try
             {
                 var articles = await _newsArticleService.GetNewsArticlesByTagAsync(tagId);
-                return Ok(articles);
+                return Ok(ApiResponse<IEnumerable<NewsArticleResponse>>.Success(articles, "Fetched articles by tag"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
 
@@ -153,11 +156,11 @@ namespace NewsManagement.API.Controllers
             try
             {
                 var articles = await _newsArticleService.GetActiveNewsArticlesAsync();
-                return Ok(articles);
+                return Ok(ApiResponse<IEnumerable<NewsArticleResponse>>.Success(articles, "Fetched active articles"));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new { message = ex.Message });
+                return StatusCode(500, ApiResponse<string>.Fail(ex.Message, 500));
             }
         }
     }
