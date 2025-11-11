@@ -55,5 +55,29 @@ namespace Repository.Repository.Implement
         {
             return await _dbSet.AnyAsync(predicate);
         }
+        public async Task<T?> GetFirstOrDefaultAsync(
+    Expression<Func<T, bool>>? predicate = null,
+    Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+    string includeProperties = "")
+        {
+            IQueryable<T> query = _dbSet;
+
+            if (predicate != null)
+                query = query.Where(predicate);
+
+            // Handle includes
+            foreach (var includeProperty in includeProperties.Split(
+                         new char[] { ',' },
+                         StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty.Trim());
+            }
+
+            if (orderBy != null)
+                query = orderBy(query);
+
+            return await query.FirstOrDefaultAsync();
+        }
+
     }
 }

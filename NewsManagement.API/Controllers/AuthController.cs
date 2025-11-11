@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Repository.Requests;
 using Repository.Responses;
 using Service.Interface;
+using System.Security.Claims;
 
 namespace NewsManagement.API.Controllers
 {
@@ -48,7 +49,6 @@ namespace NewsManagement.API.Controllers
                 var userId = User.FindFirst(System.Security.Claims.ClaimTypes.NameIdentifier)?.Value;
                 var email = User.FindFirst(System.Security.Claims.ClaimTypes.Email)?.Value;
                 var role = User.FindFirst(System.Security.Claims.ClaimTypes.Role)?.Value;
-
                 return Ok(new
                 {
                     success = true,
@@ -56,7 +56,8 @@ namespace NewsManagement.API.Controllers
                     {
                         userId,
                         email,
-                        role = GetRoleName(role)
+                        role = GetRoleName(role),
+                       
                     }
                 });
             }

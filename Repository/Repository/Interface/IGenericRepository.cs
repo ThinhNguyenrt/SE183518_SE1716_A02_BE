@@ -16,5 +16,9 @@ namespace Repository.Repository.Interface
         void Update(T entity);
         void Delete(T entity);
         Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
+        Task<T?> GetFirstOrDefaultAsync(
+    Expression<Func<T, bool>>? predicate = null,
+    Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null,
+    string includeProperties = "");
     }
 }

@@ -3,8 +3,36 @@
   "WorkspaceRootPath": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{4B49CEB0-8D8F-4C3D-B8D8-A09159170AC2}|Service\\Service.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\service\\implement\\newsarticleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4B49CEB0-8D8F-4C3D-B8D8-A09159170AC2}|Service\\Service.csproj|solutionrelative:service\\implement\\newsarticleservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\repository\\repository\\interface\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|solutionrelative:repository\\repository\\interface\\igenericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\repository\\repository\\implement\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|solutionrelative:repository\\repository\\implement\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\repository\\repository\\implement\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|solutionrelative:repository\\repository\\implement\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\repository\\responses\\tagresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|solutionrelative:repository\\responses\\tagresponsedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{20D4E34B-9C43-43B5-96C9-BE7F5CF65398}|NewsManagement.API\\NewsManagement.API.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\newsmanagement.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
       "RelativeMoniker": "D:0:0:{20D4E34B-9C43-43B5-96C9-BE7F5CF65398}|NewsManagement.API\\NewsManagement.API.csproj|solutionrelative:newsmanagement.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{20D4E34B-9C43-43B5-96C9-BE7F5CF65398}|NewsManagement.API\\NewsManagement.API.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\newsmanagement.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{20D4E34B-9C43-43B5-96C9-BE7F5CF65398}|NewsManagement.API\\NewsManagement.API.csproj|solutionrelative:newsmanagement.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\repository\\models\\systemaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5063B9F9-A490-4A73-AB78-643A7BFCC3C2}|Repository\\Repository.csproj|solutionrelative:repository\\models\\systemaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{20D4E34B-9C43-43B5-96C9-BE7F5CF65398}|NewsManagement.API\\NewsManagement.API.csproj|d:\\se183518_se1716_a02\\se183518_se1716_a02_be\\se183518_se1716_a02_be\\newsmanagement.api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -22,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 11,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,20 +82,104 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IGenericRepository.cs",
+              "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Repository\\Interface\\IGenericRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Repository\\Interface\\IGenericRepository.cs",
+              "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Repository\\Interface\\IGenericRepository.cs",
+              "RelativeToolTip": "Repository\\Repository\\Interface\\IGenericRepository.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAgwBUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T09:27:07.974Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UnitOfWork.cs",
+              "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Repository\\Implement\\UnitOfWork.cs",
+              "RelativeDocumentMoniker": "Repository\\Repository\\Implement\\UnitOfWork.cs",
+              "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Repository\\Implement\\UnitOfWork.cs",
+              "RelativeToolTip": "Repository\\Repository\\Implement\\UnitOfWork.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAAwCoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T09:25:27.519Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GenericRepository.cs",
+              "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Repository\\Implement\\GenericRepository.cs",
+              "RelativeDocumentMoniker": "Repository\\Repository\\Implement\\GenericRepository.cs",
+              "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Repository\\Implement\\GenericRepository.cs",
+              "RelativeToolTip": "Repository\\Repository\\Implement\\GenericRepository.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAQwDwAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T09:25:13.872Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TagResponseDto.cs",
+              "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Responses\\TagResponseDto.cs",
+              "RelativeDocumentMoniker": "Repository\\Responses\\TagResponseDto.cs",
+              "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Responses\\TagResponseDto.cs",
+              "RelativeToolTip": "Repository\\Responses\\TagResponseDto.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAswA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T09:22:50.048Z"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NewsArticleService.cs",
+              "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Service\\Implement\\NewsArticleService.cs",
+              "RelativeDocumentMoniker": "Service\\Implement\\NewsArticleService.cs",
+              "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Service\\Implement\\NewsArticleService.cs",
+              "RelativeToolTip": "Service\\Implement\\NewsArticleService.cs",
+              "ViewState": "AgIAANgAAAAAAAAAAADwvwgBAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T09:20:03.882Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SystemAccount.cs",
+              "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Models\\SystemAccount.cs",
+              "RelativeDocumentMoniker": "Repository\\Models\\SystemAccount.cs",
+              "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\Repository\\Models\\SystemAccount.cs",
+              "RelativeToolTip": "Repository\\Models\\SystemAccount.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T00:27:18.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\NewsManagement.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "NewsManagement.API\\Controllers\\AuthController.cs",
+              "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\NewsManagement.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "NewsManagement.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAkwDsAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-11T00:26:51.326Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\NewsManagement.API\\appsettings.json",
               "RelativeDocumentMoniker": "NewsManagement.API\\appsettings.json",
               "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\NewsManagement.API\\appsettings.json",
               "RelativeToolTip": "NewsManagement.API\\appsettings.json",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABcAAAAwAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAQwBQAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2025-11-10T07:43:30.003Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T07:43:30.003Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 9,
               "Title": "TagController.cs",
               "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\NewsManagement.API\\Controllers\\TagController.cs",
               "RelativeDocumentMoniker": "NewsManagement.API\\Controllers\\TagController.cs",
@@ -75,21 +187,19 @@
               "RelativeToolTip": "NewsManagement.API\\Controllers\\TagController.cs",
               "ViewState": "AgIAACQAAAAAAAAAAAAYwBwAAABzAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T07:38:48.651Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T07:38:48.651Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 8,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\NewsManagement.API\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "NewsManagement.API\\Controllers\\AccountController.cs",
               "ToolTip": "D:\\SE183518_SE1716_A02\\SE183518_SE1716_A02_BE\\SE183518_SE1716_A02_BE\\NewsManagement.API\\Controllers\\AccountController.cs",
               "RelativeToolTip": "NewsManagement.API\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAKsAAAAAAAAAAAAwwEUAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEUAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-10T07:38:45.802Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-10T07:38:45.802Z"
             }
           ]
         },

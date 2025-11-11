@@ -6,7 +6,6 @@ using Service.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Service.Implement
@@ -22,14 +21,31 @@ namespace Service.Implement
 
         public async Task<IEnumerable<NewsArticleResponse>> GetAllNewsArticlesAsync()
         {
-            var newsArticles = await _unitOfWork.Repository<NewsArticle>().GetAllAsync();
+            var newsArticles = await _unitOfWork.Repository<NewsArticle>()
+                .GetAllAsync();
 
-            return await MapToResponseDtoListAsync(newsArticles);
+            // Reload each with Tags for consistency
+            var fullArticles = new List<NewsArticle>();
+            foreach (var article in newsArticles)
+            {
+                var loaded = await _unitOfWork.Repository<NewsArticle>()
+                    .GetFirstOrDefaultAsync(
+                        n => n.NewsArticleId == article.NewsArticleId,
+                        includeProperties: "Tags,Category,CreatedBy,UpdatedBy"
+                    );
+                fullArticles.Add(loaded);
+            }
+
+            return await MapToResponseDtoListAsync(fullArticles);
         }
 
         public async Task<NewsArticleResponse> GetNewsArticleByIdAsync(Guid newsArticleId)
         {
-            var newsArticle = await _unitOfWork.Repository<NewsArticle>().GetByIdAsync(newsArticleId);
+            var newsArticle = await _unitOfWork.Repository<NewsArticle>()
+                .GetFirstOrDefaultAsync(
+                    n => n.NewsArticleId == newsArticleId,
+                    includeProperties: "Tags,Category,CreatedBy,UpdatedBy"
+                );
 
             if (newsArticle == null)
                 return null;
@@ -39,14 +55,12 @@ namespace Service.Implement
 
         public async Task<NewsArticleResponse> CreateNewsArticleAsync(NewsArticleRequest request, Guid createdById)
         {
-            // Validate category exists
             var categoryExists = await _unitOfWork.Repository<Category>()
                 .ExistsAsync(c => c.CategoryId == request.CategoryId);
 
             if (!categoryExists)
                 throw new ArgumentException("Category does not exist");
 
-            // Validate creator exists
             var creatorExists = await _unitOfWork.Repository<SystemAccount>()
                 .ExistsAsync(u => u.AccountId == createdById);
 
@@ -66,7 +80,7 @@ namespace Service.Implement
                 CreatedDate = DateTime.Now
             };
 
-            // Handle tags
+            // Attach tags if provided
             if (request.TagIds != null && request.TagIds.Any())
             {
                 var tags = await _unitOfWork.Repository<Tag>()
@@ -78,24 +92,33 @@ namespace Service.Implement
             await _unitOfWork.Repository<NewsArticle>().AddAsync(newsArticle);
             await _unitOfWork.SaveChangesAsync();
 
-            return await MapToResponseDtoAsync(newsArticle);
+            // Reload with related entities (especially Tags)
+            var createdArticle = await _unitOfWork.Repository<NewsArticle>()
+                .GetFirstOrDefaultAsync(
+                    n => n.NewsArticleId == newsArticle.NewsArticleId,
+                    includeProperties: "Tags,Category,CreatedBy,UpdatedBy"
+                );
+
+            return await MapToResponseDtoAsync(createdArticle);
         }
 
         public async Task<NewsArticleResponse> UpdateNewsArticleAsync(UpdateNewsArticleRequest request, Guid updatedById)
         {
-            var newsArticle = await _unitOfWork.Repository<NewsArticle>().GetByIdAsync(request.NewsArticleId);
+            var newsArticle = await _unitOfWork.Repository<NewsArticle>()
+                .GetFirstOrDefaultAsync(
+                    n => n.NewsArticleId == request.NewsArticleId,
+                    includeProperties: "Tags"
+                );
 
             if (newsArticle == null)
                 throw new KeyNotFoundException("News article not found");
 
-            // Validate category exists
             var categoryExists = await _unitOfWork.Repository<Category>()
                 .ExistsAsync(c => c.CategoryId == request.CategoryId);
 
             if (!categoryExists)
                 throw new ArgumentException("Category does not exist");
 
-            // Validate updater exists
             var updaterExists = await _unitOfWork.Repository<SystemAccount>()
                 .ExistsAsync(u => u.AccountId == updatedById);
 
@@ -123,12 +146,20 @@ namespace Service.Implement
             _unitOfWork.Repository<NewsArticle>().Update(newsArticle);
             await _unitOfWork.SaveChangesAsync();
 
-            return await MapToResponseDtoAsync(newsArticle);
+            // Reload to include updated tags
+            var updatedArticle = await _unitOfWork.Repository<NewsArticle>()
+                .GetFirstOrDefaultAsync(
+                    n => n.NewsArticleId == newsArticle.NewsArticleId,
+                    includeProperties: "Tags,Category,CreatedBy,UpdatedBy"
+                );
+
+            return await MapToResponseDtoAsync(updatedArticle);
         }
 
         public async Task<bool> DeleteNewsArticleAsync(Guid newsArticleId)
         {
-            var newsArticle = await _unitOfWork.Repository<NewsArticle>().GetByIdAsync(newsArticleId);
+            var newsArticle = await _unitOfWork.Repository<NewsArticle>()
+                .GetByIdAsync(newsArticleId);
 
             if (newsArticle == null)
                 throw new KeyNotFoundException("News article not found");
@@ -144,15 +175,38 @@ namespace Service.Implement
             var newsArticles = await _unitOfWork.Repository<NewsArticle>()
                 .FindAsync(n => n.CategoryId == categoryId);
 
-            return await MapToResponseDtoListAsync(newsArticles);
+            var fullArticles = new List<NewsArticle>();
+            foreach (var article in newsArticles)
+            {
+                var loaded = await _unitOfWork.Repository<NewsArticle>()
+                    .GetFirstOrDefaultAsync(
+                        n => n.NewsArticleId == article.NewsArticleId,
+                        includeProperties: "Tags,Category,CreatedBy,UpdatedBy"
+                    );
+                fullArticles.Add(loaded);
+            }
+
+            return await MapToResponseDtoListAsync(fullArticles);
         }
 
         public async Task<IEnumerable<NewsArticleResponse>> GetNewsArticlesByTagAsync(Guid tagId)
         {
-            var newsArticles = await _unitOfWork.Repository<NewsArticle>().GetAllAsync();
-            var filtered = newsArticles.Where(n => n.Tags.Any(t => t.TagId == tagId));
+            // Load all articles that have this tag (eager load Tags)
+            var newsArticles = await _unitOfWork.Repository<NewsArticle>()
+                .FindAsync(n => n.Tags.Any(t => t.TagId == tagId));
 
-            return await MapToResponseDtoListAsync(filtered);
+            var fullArticles = new List<NewsArticle>();
+            foreach (var article in newsArticles)
+            {
+                var loaded = await _unitOfWork.Repository<NewsArticle>()
+                    .GetFirstOrDefaultAsync(
+                        n => n.NewsArticleId == article.NewsArticleId,
+                        includeProperties: "Tags,Category,CreatedBy,UpdatedBy"
+                    );
+                fullArticles.Add(loaded);
+            }
+
+            return await MapToResponseDtoListAsync(fullArticles);
         }
 
         public async Task<IEnumerable<NewsArticleResponse>> GetActiveNewsArticlesAsync()
@@ -160,24 +214,22 @@ namespace Service.Implement
             var newsArticles = await _unitOfWork.Repository<NewsArticle>()
                 .FindAsync(n => n.NewsStatus);
 
-            return await MapToResponseDtoListAsync(newsArticles);
+            var fullArticles = new List<NewsArticle>();
+            foreach (var article in newsArticles)
+            {
+                var loaded = await _unitOfWork.Repository<NewsArticle>()
+                    .GetFirstOrDefaultAsync(
+                        n => n.NewsArticleId == article.NewsArticleId,
+                        includeProperties: "Tags,Category,CreatedBy,UpdatedBy"
+                    );
+                fullArticles.Add(loaded);
+            }
+
+            return await MapToResponseDtoListAsync(fullArticles);
         }
 
         private async Task<NewsArticleResponse> MapToResponseDtoAsync(NewsArticle newsArticle)
         {
-            var category = await _unitOfWork.Repository<Category>()
-                .GetByIdAsync(newsArticle.CategoryId);
-
-            var creator = await _unitOfWork.Repository<SystemAccount>()
-                .GetByIdAsync(newsArticle.CreatedById);
-
-            SystemAccount updater = null;
-            if (newsArticle.UpdatedById.HasValue)
-            {
-                updater = await _unitOfWork.Repository<SystemAccount>()
-                    .GetByIdAsync(newsArticle.UpdatedById.Value);
-            }
-
             return new NewsArticleResponse
             {
                 NewsArticleId = newsArticle.NewsArticleId,
@@ -187,12 +239,12 @@ namespace Service.Implement
                 NewsContent = newsArticle.NewsContent,
                 NewsSource = newsArticle.NewsSource,
                 CategoryId = newsArticle.CategoryId,
-                CategoryName = category?.CategoryName,
+                CategoryName = newsArticle.Category?.CategoryName,
                 NewsStatus = newsArticle.NewsStatus,
                 CreatedById = newsArticle.CreatedById,
-                CreatedByName = creator?.AccountName,
+                CreatedByName = newsArticle.CreatedBy?.AccountName,
                 UpdatedById = newsArticle.UpdatedById,
-                UpdatedByName = updater?.AccountName,
+                UpdatedByName = newsArticle.UpdatedBy?.AccountName,
                 ModifiedDate = newsArticle.ModifiedDate,
                 Tags = newsArticle.Tags?.Select(t => new TagResponseDto
                 {
